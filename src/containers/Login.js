@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import { loggedIn, unlogged } from '../actions/loginActionCreator'
+import { loggedIn } from '../actions/loginActionCreator'
 import { useDispatch } from 'react-redux';
 import { Container, Button } from 'react-bootstrap'
-
-
+import HeaderProfile from './HeaderProfile'
 
 const Login = ({loginData}) => {
   const dispatch = useDispatch();
@@ -16,26 +15,24 @@ const Login = ({loginData}) => {
 
   return loginData.loggedIn ? (
     <Container>
-      <Button
-        onClick={() => {dispatch(unlogged())}}
-        variant="outline-danger">
-        Odhlásit se
-      </Button>
+      <HeaderProfile />
     </Container>
   ) : (
-    <FacebookLogin
-      appId="2638621466392798"
-      autoLoad={true}
-      fields="name,email,picture"
-      callback={responseFacebook}
-      render={renderProps => (
-        <Button
-          variant="outline-primary"
-          onClick={renderProps.onClick}>
-          Facebook přihlášení
-      </Button>
-      )}
-    />
+    <Container>
+      <FacebookLogin
+        appId="2638621466392798"
+        autoLoad={true}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        render={renderProps => (
+          <Button
+            variant="outline-primary"
+            onClick={renderProps.onClick}>
+            Facebook přihlášení
+        </Button>
+        )}
+      />
+    </Container>
   )
 }
 

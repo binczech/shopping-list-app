@@ -7,14 +7,17 @@ import {
 import { Provider } from 'react-redux'
 import App from '../containers/App'
 import PropTypes from 'prop-types'
+import { PersistGate } from 'redux-persist/integration/react'
 
-const Rooter = ({ store }) => (
+const Rooter = ({ store, persistor }) => (
   <Provider store={store }>
-    <Router>
-      <Switch>
-        <Route path='/' component={App} />
-      </Switch>
-    </Router>
+    <PersistGate persistor={persistor}>
+      <Router>
+        <Switch>
+          <Route path='/' component={App} />
+        </Switch>
+      </Router>
+    </PersistGate>
   </Provider>
 )
 Rooter.propTypes = {
