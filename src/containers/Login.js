@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import { loggedIn } from '../actions/loginActionCreator'
+import { loggedIn, postUser } from '../actions/loginActionCreator'
 import { useDispatch } from 'react-redux';
 import { Container, Button } from 'react-bootstrap'
 import HeaderProfile from './HeaderProfile'
@@ -11,6 +11,7 @@ const Login = ({loginData}) => {
 
   function responseFacebook(response) {
     dispatch(loggedIn(response))
+    dispatch(postUser(response))
   }
 
   return loginData.loggedIn ? (

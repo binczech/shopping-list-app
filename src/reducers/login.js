@@ -5,13 +5,16 @@ const initialState = {
   name: '',
   email: '',
   userID: '',
-  picture: ''
+  picture: '',
+  stored: false,
+  storing: false
 }
 
 const login = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOGGED_IN:
       return {
+        ...state,
         loggedIn: true,
         accessToken: action.payload.data.accessToken,
         name: action.payload.data.name,
@@ -22,6 +25,26 @@ const login = (state = initialState, action) => {
 
     case actions.UNLOGGED:
       return initialState
+
+    case actions.STORE_USER_REQUEST:
+      return {
+        ...state,
+        storing: true
+      }
+
+    case actions.STORE_USER_SUCCESS:
+      return {
+        ...state,
+        storing: false,
+        stored: true
+      }
+
+    case actions.STORE_USER_FAILURE:
+      return {
+        ...state,
+        storing: false,
+        stored: false
+      }
 
     default:
       return state

@@ -1,2 +1,5 @@
 export const LOGGED_IN = 'loggedIn'
 export const UNLOGGED = 'unlogged'
+export const STORE_USER_REQUEST = 'storeUserRequest'
+export const STORE_USER_SUCCESS = 'storeUserSuccess'
+export const STORE_USER_FAILURE = 'storeUserFailure'
