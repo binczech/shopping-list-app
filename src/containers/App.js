@@ -1,12 +1,19 @@
 import React from 'react';
-import Layout from '../components/layout'
+import Home from './Home'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 
-function App() {
+const App = () => {
   return (
-    <Layout>
-      Hello World
-    </Layout>
+    <Router>
+      <Switch>
+        <Route path='/' component={Home} />
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
+export default App
